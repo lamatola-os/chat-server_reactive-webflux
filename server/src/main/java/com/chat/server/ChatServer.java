@@ -37,7 +37,7 @@ class ChatServer {
 
     @GetMapping(
             value = "/v2/chat",
-            produces = MediaType.APPLICATION_JSON_VALUE
+            produces = MediaType.TEXT_EVENT_STREAM_VALUE
     )
     Flux<ChatResponse> chatResponsePublisher() {
         return Flux.fromStream(
