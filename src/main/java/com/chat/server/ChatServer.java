@@ -1,5 +1,6 @@
 package com.chat.server;
 
+import com.chat.server.client.ChatResponse;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,6 +17,7 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.time.Duration;
 import java.util.stream.Stream;
 
 //@Component
@@ -33,23 +35,23 @@ import java.util.stream.Stream;
 @RequestMapping
 class ChatServer {
 
-    @GetMapping("/v2/chat")
-    Flux<ChatResponse> chatResponsePublisher(){
-
-        //Flux.fromStream(Stream.of(""));
-
-        return Flux.just(
-                ChatResponse.builder()
-                        .message("hi how can i help you")
-                        .build()
-        );
+    @GetMapping(
+            value = "/v2/chat",
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    Flux<ChatResponse> chatResponsePublisher() {
+        return Flux.fromStream(
+                Stream.of(
+                        ChatResponse.builder()
+                                .message("hi how can i help you")
+                                .build(),
+                        ChatResponse.builder()
+                                .message("Please see stuff")
+                                .build(),
+                        ChatResponse.builder()
+                                .message("whatever")
+                                .build()
+                )
+        ).delayElements(Duration.ofSeconds(1));
     }
-}
-
-@Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-class ChatResponse {
-    String message;
 }
