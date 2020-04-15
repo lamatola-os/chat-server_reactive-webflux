@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,11 +38,14 @@ import java.util.stream.Stream;
 @RequestMapping
 class ChatServer {
 
+    private static final Logger logger = LogManager.getLogger();
+
     @GetMapping(
             value = "/heartbeat",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     Mono<HealthResponse> getHealth() {
+        logger.info("/heartbeat");
         return Mono.just(
           new HealthResponse(
                   "chat-server",
