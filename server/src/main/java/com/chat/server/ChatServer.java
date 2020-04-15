@@ -1,6 +1,7 @@
 package com.chat.server;
 
 import com.chat.server.client.ChatResponse;
+import com.chat.server.client.HealthResponse;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -34,6 +35,19 @@ import java.util.stream.Stream;
 @RestController
 @RequestMapping
 class ChatServer {
+
+    @GetMapping(
+            value = "/heartbeat",
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    Mono<HealthResponse> getHealth() {
+        return Mono.just(
+          new HealthResponse(
+                  "chat-server",
+                  "1.0"
+          )
+        );
+    }
 
     @GetMapping(
             value = "/v2/chat",
