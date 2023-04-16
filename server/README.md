@@ -1,13 +1,23 @@
 
-reactive server
---------------------
+reactive server on Tomcat
+-------------------------
 
 https://developer.okta.com/blog/2018/09/21/reactive-programming-with-spring
 
 ```bash
 mvn clean package
+## mvn clean spring-boot:run
 
 java -jar target/chat-server-1.0-SNAPSHOT.jar
+2023-04-16 16:19:30.946  INFO 69458 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-04-16 16:19:30.985  INFO 69458 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-04-16 16:19:30.985  INFO 69458 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.16]
+2023-04-16 16:19:31.112  INFO 69458 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-04-16 16:19:31.112  INFO 69458 --- [           main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1442 ms
+2023-04-16 16:19:31.616  INFO 69458 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2023-04-16 16:19:32.036  INFO 69458 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-04-16 16:19:32.040  INFO 69458 --- [           main] com.chat.server.ChatApplication              : Started Application in 2.937 seconds (JVM running for 3.449)
+
 ```
 
 reactive client

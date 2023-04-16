@@ -2,20 +2,12 @@ package com.chat.server;
 
 import com.chat.server.client.ChatResponse;
 import com.chat.server.client.HealthResponse;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.reactive.function.BodyInserters;
-import org.springframework.web.reactive.function.server.ServerRequest;
-import org.springframework.web.reactive.function.server.ServerResponse;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -36,7 +28,7 @@ import java.util.stream.Stream;
 
 @RestController
 @RequestMapping
-class ChatServer {
+class ChatController {
 
     private static final Logger logger = LogManager.getLogger();
 
@@ -62,13 +54,13 @@ class ChatServer {
         return Flux.fromStream(
                 Stream.of(
                         ChatResponse.builder()
-                                .message("hi how can i help you")
+                                .message("message1: hi how can i help you")
                                 .build(),
                         ChatResponse.builder()
-                                .message("Please see stuff")
+                                .message("message2: Please see the FAQ for more.")
                                 .build(),
                         ChatResponse.builder()
-                                .message("whatever")
+                                .message("message3: If this does not answer your question. Talk to our rep.")
                                 .build()
                 )
         ).delayElements(Duration.ofSeconds(1));
