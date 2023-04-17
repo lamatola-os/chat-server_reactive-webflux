@@ -1,5 +1,5 @@
 
-reactive server on Tomcat
+Reactive microservice on Tomcat
 -------------------------
 
 https://developer.okta.com/blog/2018/09/21/reactive-programming-with-spring
@@ -168,4 +168,4 @@ Percentage of the requests served within a certain time (ms)
  100%  15566 (longest request)
 ```
 
-![](mono_perf_2020.png)
+![](mono_perf_tomcat_q_2020.png)

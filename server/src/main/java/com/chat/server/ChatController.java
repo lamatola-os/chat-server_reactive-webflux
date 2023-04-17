@@ -37,7 +37,7 @@ class ChatController {
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     Mono<HealthResponse> getHealth() {
-        logger.info("/heartbeat");
+        logger.debug("/heartbeat");
         return Mono.just(
           new HealthResponse(
                   "chat-server",
